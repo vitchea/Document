@@ -29,6 +29,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/fileins', function () {
     return view('filein');
 })->name('fileins');
 
-
-
 //  Route::get('/uploads',Uploads::class)->name('Upload');

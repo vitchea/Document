@@ -31,12 +31,12 @@
              <table class="table-auto w-full">
                 <thead>
                     <tr class="bg-gray-100 ">
-                        <th class="px-4 py-2 w-20">កាលបរិច្ជេទចូល</th>
-                        <th class="px-4 py-2">ប្រភពឯកសារ</th>
-                        <th class="px-4 py-2">ប្រធានបទ</th>
-                        <th class="px-4 py-2">លេខឯកសារ</th>
-                        <th class="px-4 py-2"></th>
-                        <th class="px-4 py-2"></th>
+                        <th class="px-4 py-2 w-2/12">កាលបរិច្ជេទចូល</th>
+                        <th class="px-4 py-2 w-4/12">ប្រភពឯកសារ</th>
+                        <th class="px-4 py-2 w-4/12">ប្រធានបទ</th>
+                        <th class="px-4 py-2 w-2/12">លេខឯកសារ</th>
+                        <th class="px-4 py-2 w-1/12"></th>
+                        <th class="px-4 py-2 w-2/12"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,18 +48,17 @@
                         <td class="border px-4 py-2">{{ $filein->subject }}</td>
                         <td class="border px-4 py-2">{{ $filein->fileid }}</td>
                         <td class="border px-4 py-2 hover:bg-white">
-                            {{-- <button wire:click="export"
-                                class="flex px-4 py-2 bg-gray-500 text-gray-900 cursor-pointer">PDF</button> --}}
-                            {{-- {{ $filein->file}}</td> --}}
-                            {{-- {{ Storage::url($filein->file)}} --}}
-                            <button wire:click="export('{{$filein->file}}','{{$filein->id}}')" class="hover:text-yellow-600">
+                                        
+                            <button wire:click="export('{{$filein->file}}','{{$filein->subject}}')" class=" px-4 py-2 cursor-pointer rounded-l-md hover:text-yellow-600">
                                 Download 
                             </button>
+                            <a href="{{ asset('storage/file_in/'.$filein->file) }}" target="_blank"> a</a>
+                        </td>
                         <td class="border flex flex-row px-4 py-2">
                             <button  wire:click="edit({{ $filein->id }})"
-                                class=" px-4 py-2 bg-green-500 text-white hover:bg-green-900 cursor-pointer rounded-l-md">កែប្រែ</button>
+                                class=" px-4 py-2 bg-green-500 text-white hover:bg-green-900 cursor-pointer rounded-l-md w-24">កែប្រែ</button>
                             <button wire:click="delete('{{ $filein->id }}','{{$filein->file}}')"
-                                class=" px-4 py-2 bg-red-500 text-white hover:bg-red-900 cursor-pointer rounded-r-md">លុប</button>
+                                class=" px-4 py-2 bg-red-500 text-white hover:bg-red-900 cursor-pointer rounded-r-md w-24">លុប</button>
                         </td>
                     </tr>
                     @endforeach
@@ -70,7 +69,7 @@
         <div class="px-6 py-6">
              {{$fileins->links()}}
         </div>
-       
+      
     </div>
 </div>
 

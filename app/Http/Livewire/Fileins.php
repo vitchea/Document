@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Filein;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 use Livewire\Schema;
 use App\Http\Livewire\Request;
 use PDF;
@@ -89,13 +90,16 @@ class Fileins extends Component
 
         if(!empty($this->file)){
             
-            $doc = $this->file->store('file_in');
+            $doc = $this->file;
+            $file_name = $doc->getClientOriginalName();
+            
+            $path =  $this->file->storeAs('public/file_in',$file_name);
 
             $validateData = array_merge($validateData,[
                 'file' => 'required'
             ]);
             $data = array_merge($data,[
-                'file' =>  $doc
+                'file' =>  $file_name
             ]);
 
         }
@@ -140,18 +144,16 @@ class Fileins extends Component
     public function delete($id,$link)
     {
         FileIn::find($id)->delete();
-        Storage::disk('local')->delete($link);
+        Storage::disk('publick')->delete($link);
         session()->flash('message', 'FileIn deleted.');
     }
     
-   public function export($link)
+   public function export($link,$fid)
     { 
-        
-        $str = 'សាដ';
-        $str = mb_convert_encoding($str, "UTF-8");
-        return Storage::disk('local')->download($link,$str);  
-              
+       
+        return Storage::disk('public')->download('file_in/'.$link,$fid);          
     }
+    
    
     
  
