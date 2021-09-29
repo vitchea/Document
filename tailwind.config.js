@@ -9,6 +9,7 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './resources/views/*/*.blade.php',
         
+        
     ],  
     
 
@@ -20,5 +21,9 @@ module.exports = {
         },
     },
 
-    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'),],
+     corePlugins: {
+     
+     tableLayout: false,
+    }
 };

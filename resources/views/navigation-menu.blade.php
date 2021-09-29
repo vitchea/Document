@@ -16,8 +16,12 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 
-                    <x-jet-nav-link href="{{ route('fileins') }}" :active="request()->routeIs('fileins')">
+                    <x-jet-nav-link href="{{ route('fileins') }}" :active="request()->routeIs('fileins')" style="font-family: 'Noto Sans Khmer', sans-serif;">
                         {{ __('ឯកសារចូល') }}
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('fileouts') }}" :active="request()->routeIs('fileouts')" style="font-family: 'Noto Sans Khmer', sans-serif;">
+                        {{ __('ឯកសារចេញ') }}
                     </x-jet-nav-link>
                     
                 </div>

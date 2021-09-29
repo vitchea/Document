@@ -3,7 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Filein;
+
+use App\Models\Fileout;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
@@ -13,9 +14,10 @@ use PDF;
 use Mpdf\Output\Destination\FILE;
 
 use Livewire\WithPagination;
-class Fileins extends Component
+
+class Fileouts extends Component
 {
-    use WithFileUploads;
+     use WithFileUploads;
     use WithPagination;
    // public $fileins;
     public $date,$filesource,$subject,$file,$fileid,$file_id;
@@ -28,8 +30,8 @@ class Fileins extends Component
         //  $this->fileins = FileIn::all();
         //  return view('livewire.fileins');
          
-         return view('livewire.fileins', [
-            'fileins' => FileIn::where('date', 'like', '%'.$this->search.'%')
+         return view('livewire.fileouts', [
+            'fileins' => Fileout::where('date', 'like', '%'.$this->search.'%')
                         ->orWhere('filesource', 'like', '%'.$this->search.'%')
                         ->orWhere('subject', 'like', '%'.$this->search.'%')
                         ->orWhere('fileid','like','%'.$this->search.'%')
@@ -93,7 +95,7 @@ class Fileins extends Component
             $doc = $this->file;
             $file_name = $doc->getClientOriginalName();
             
-            $path =  $this->file->storeAs('public/file_in',$file_name);
+            $path =  $this->file->storeAs('public/fileout',$file_name);
             
             $validateData = array_merge($validateData,[
                 'file' => 'required'
@@ -108,9 +110,9 @@ class Fileins extends Component
          // $filePath = $this->file->store('file_in');
         if($this->file_id){
           
-            FileIn::find($this->file_id)->update($data);
+            Fileout::find($this->file_id)->update($data);
         }else {
-            FileIn::create($data);
+            Fileout::create($data);
         }
        
       // $filePath = $this->file->store('file_in');
@@ -130,7 +132,7 @@ class Fileins extends Component
 
     public function edit($id)
     {
-        $filein = FileIn::findOrFail($id);
+        $filein = Fileout::findOrFail($id);
         $this->file_id = $id;
         $this->date = $filein->date;
         $this->filesource = $filein->filesource;
@@ -143,9 +145,9 @@ class Fileins extends Component
    
     public function delete($id,$link)
     {
-        FileIn::find($id)->delete();
+        Fileout::find($id)->delete();
        
-        Storage::disk('public')->delete('file_in/'.$link);
+        Storage::disk('public')->delete('fileout/'.$link);
         session()->flash('message', 'ឯកសារត្រូវបានលុប.');
     }
     
@@ -157,11 +159,6 @@ class Fileins extends Component
      
         
 
-        return Storage::disk('public')->download('file_in/'.$link);          
+        return Storage::disk('public')->download('fileout/'.$link);          
     }
-    
-   
-    
- 
-
 }
