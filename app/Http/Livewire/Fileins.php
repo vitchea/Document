@@ -91,8 +91,9 @@ class Fileins extends Component
         if(!empty($this->file)){
             
             $doc = $this->file;
-            $file_name = $doc->getClientOriginalName();
             
+            $file_name = $doc->getClientOriginalName();
+          
             $path =  $this->file->storeAs('public/file_in',$file_name);
             
             $validateData = array_merge($validateData,[
@@ -149,16 +150,7 @@ class Fileins extends Component
         session()->flash('message', 'ឯកសារត្រូវបានលុប.');
     }
     
-   public function export($link,$fid)
-    { 
-        $str = "សាដ";
-    
-       // $string = preg_replace( '/[^[:print:]\r\n]/', '',$str);
-     
-        
-
-        return Storage::disk('public')->download('file_in/'.$link);          
-    }
+   
     
    
     
