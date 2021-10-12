@@ -92,8 +92,10 @@ class Fileins extends Component
             
             $doc = $this->file;
             
-            $file_name = $doc->getClientOriginalName();
-          
+         //   $file_name = $this->filesource.$doc->getClientOriginalName();
+            
+            $file_name = $this->date.'-'.$this->filesource.'-'.$this->subject.'-'.$this->fileid.$doc->getClientOriginalExtension();
+
             $path =  $this->file->storeAs('public/file_in',$file_name);
             
             $validateData = array_merge($validateData,[
