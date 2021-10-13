@@ -26,7 +26,7 @@
                 
             </div>
             
-             @if($isModalOpen)
+            @if($isModalOpen)
             @include('livewire.create')
             @endif 
              <table class="table-auto w-full" style="font-family: 'Noto Sans Khmer', sans-serif;">

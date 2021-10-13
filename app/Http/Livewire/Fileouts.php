@@ -35,6 +35,7 @@ class Fileouts extends Component
                         ->orWhere('filesource', 'like', '%'.$this->search.'%')
                         ->orWhere('subject', 'like', '%'.$this->search.'%')
                         ->orWhere('fileid','like','%'.$this->search.'%')
+                        ->orderBy('id','desc')
                         ->paginate(10),
             // 'fields' => FileIn::select('year','code','title','filename')->get(),
         ]);
@@ -93,8 +94,8 @@ class Fileouts extends Component
         if(!empty($this->file)){
             
             $doc = $this->file;
-            $file_name = $doc->getClientOriginalName();
-            
+           // $file_name = $doc->getClientOriginalName();
+             $file_name = $this->date.'-'.$this->filesource.'-'.$this->subject.'-'.$this->fileid.'.'.$doc->getClientOriginalExtension(); 
             $path =  $this->file->storeAs('public/fileout',$file_name);
             
             $validateData = array_merge($validateData,[
@@ -151,14 +152,5 @@ class Fileouts extends Component
         session()->flash('message', 'ឯកសារត្រូវបានលុប.');
     }
     
-   public function export($link,$fid)
-    { 
-        $str = "សាដ";
-    
-       // $string = preg_replace( '/[^[:print:]\r\n]/', '',$str);
-     
-        
-
-        return Storage::disk('public')->download('fileout/'.$link);          
-    }
+  
 }

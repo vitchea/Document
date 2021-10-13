@@ -33,6 +33,7 @@ class Fileins extends Component
                         ->orWhere('filesource', 'like', '%'.$this->search.'%')
                         ->orWhere('subject', 'like', '%'.$this->search.'%')
                         ->orWhere('fileid','like','%'.$this->search.'%')
+                        ->orderBy('id','desc')
                         ->paginate(10),
             // 'fields' => FileIn::select('year','code','title','filename')->get(),
         ]);
@@ -94,7 +95,7 @@ class Fileins extends Component
             
          //   $file_name = $this->filesource.$doc->getClientOriginalName();
             
-            $file_name = $this->date.'-'.$this->filesource.'-'.$this->subject.'-'.$this->fileid.$doc->getClientOriginalExtension();
+            $file_name = $this->date.'-'.$this->filesource.'-'.$this->subject.'-'.$this->fileid.'.'.$doc->getClientOriginalExtension();
 
             $path =  $this->file->storeAs('public/file_in',$file_name);
             

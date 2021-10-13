@@ -7,7 +7,8 @@
             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form id="file-upload">
                 @csrf
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" style="font-family: 'Noto Sans Khmer', sans-serif;">             
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" style="font-family: 'Noto Sans Khmer', sans-serif;">
+                    
                         <div class="mb-4">
                             <label for="exampleFormControlInput1"
                                 class="block text-gray-700 text-sm font-bold mb-2">កាលបរិច្ជេទចូល</label>
